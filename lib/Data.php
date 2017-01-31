@@ -3,7 +3,7 @@ class Data {
     private $data;
 
     public function __constructor($data) {
-        $this->data = data;
+        $this->data = $data;
     }
     
     public function has($key) {
@@ -11,6 +11,9 @@ class Data {
     }
     public function get($key) {
         return $this->data[$key];
+    }
+    public function getAll() {
+        return $this->data;
     }
     public function getAllKeys() {
         return array_keys($this->data);

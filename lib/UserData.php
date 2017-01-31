@@ -1,9 +1,8 @@
 <?php
-require 'Data.php';
-require 'DataFile.php';
+include_once 'Data.php';
+include_once 'DataFile.php';
 
 class UserData extends Data {
-    private $data;
     private $dataFile;
 
     public function __constructor($id) {
@@ -31,7 +30,7 @@ class UserData extends Data {
         return $this->get('user_code');
     }
     public function isAvailable() {
-        return $this->get('available');
+        return $this->get('available') === 'true';
     }
     public function set($key, $value) {
         $this->data[$key] = $value;

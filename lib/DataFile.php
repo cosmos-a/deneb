@@ -1,8 +1,7 @@
 <?php
-require 'Data.php';
+include_once 'Data.php';
 
 class DataFile extends Data {
-    private $data;
     private $filename;
 
     public function __constructor($filename) {
