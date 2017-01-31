@@ -1,8 +1,8 @@
 <?php
 class Data {
-    private $data;
+    public $data;
 
-    public function __constructor($data) {
+    public function __construct($data) {
         $this->data = $data;
     }
     

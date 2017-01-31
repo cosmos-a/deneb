@@ -29,13 +29,13 @@ class User {
     }
     public static function signUp($id, $pw, $email) {
         $userData = new UserData($id);
-        if ($userData->has($id)) {
+        if ($userData->has('id')) {
             echo 'Error: This ID is already used.';
         } else {
             $userData->set('available', 'false');
             $userData->set('since', date('Y.m.d H:i:s'));
             $userData->set('id', $id);
-            $userData->set('password', $password);
+            $userData->set('password', $pw);
             $userData->set('email', $email);
             $userData->set('user_code', md5($id . mt_rand(0, 99) . $id));
             $userData->set('ip', $_SERVER['REMOTE_ADDR']);

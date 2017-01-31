@@ -2,19 +2,20 @@
 include_once 'Data.php';
 
 class DataFile extends Data {
-    private $filename;
+    public $filename;
 
-    public function __constructor($filename) {
+    public function __construct($filename) {
         if (file_exists($filename)) {
             $this->data = json_decode(file_get_contents($filename), true);
         } else {
             $this->data = array();
-            $this->save();
+            self::save();
         }
+        $this->filename = $filename;
     }
 
-    public function &get($key) {
-        if (!$this->data->has($key)) {
+    public function &getData($key) {
+        if (!array_key_exists($key, $this->data)) {
             $this->data[$key] = array();
         }
         return $this->data[$key];

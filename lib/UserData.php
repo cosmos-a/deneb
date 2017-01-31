@@ -5,43 +5,44 @@ include_once 'DataFile.php';
 class UserData extends Data {
     private $dataFile;
 
-    public function __constructor($id) {
-        $dataFile = new DataFile('user.json');
-        $this->data = &$dataFile->get($id);
+    public function __construct($id) {
+        $dataFile = new DataFile('users.json');
+        $this->data = &$dataFile->getData($id);
         $this->dataFile = $dataFile;
+        echo "obj: ".json_encode($this->data);
     }
     
     public function getEmail() {
-        return $this->get('email');
+        return parent::get('email');
     }
     public function getId() {
-        return $this->get('id');
+        return parent::get('id');
     }
     public function getIp() {
-        return $this->get('ip');
+        return parent::get('ip');
     }
     public function getPassword() {
-        return $this->get('password');
+        return parent::get('password');
     }
     public function getSince() {
-        return $this->get('since');
+        return parent::get('since');
     }
     public function getUserCode() {
-        return $this->get('user_code');
+        return parent::get('user_code');
     }
     public function isAvailable() {
-        return $this->get('available') === 'true';
+        return parent::get('available') === 'true';
     }
     public function set($key, $value) {
         $this->data[$key] = $value;
-        $this->save();
+        self::save();
     }
     public function save() {
         $this->dataFile->save();
     }
     public function remove($key) {
         unset($this->data[$key]);
-        $this->save();
+        self::save();
     }
 }
 ?>
