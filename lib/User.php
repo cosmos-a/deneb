@@ -3,6 +3,13 @@ include_once 'UserData.php';
 include_once 'UserUtils.php';
 
 class User {
+    public static function getData($code, $key) {
+        $id = UserUtils::findIdByCode($code);
+        if ($id !== null) {
+            $userData = new UserData($id);
+            echo $userData->get($key);
+        }
+    }
     public static function login($id, $pw) {
         $userData = new UserData($id);
         if (UserUtils::has($id)) {

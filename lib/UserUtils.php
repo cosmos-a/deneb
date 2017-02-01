@@ -4,9 +4,9 @@ include_once 'DataFile.php';
 class UserUtils {
     public static function findIdByCode($code) {
         $dataFile = new DataFile('users.json');
-        $users = $dataFile->getAllKeys();
-        foreach ($users as $id => $v) {
-            if ($v->getUserCode() === $code) {
+        $users = $dataFile->data;
+        foreach ($users as $id => $user) {
+            if ($user['user_code'] === $code) {
                 return $id;
             }
         }
