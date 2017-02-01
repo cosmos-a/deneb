@@ -54,6 +54,7 @@ class User {
             $userData->set('email', $email);
             $userData->set('user_code', md5($id . mt_rand(0, 99) . $id));
             $userData->set('ip', $_SERVER['REMOTE_ADDR']);
+            $userData->set('friends', '[]');
             echo 'Success! You can use this ID after the permission of the admin.';
         }
     }
