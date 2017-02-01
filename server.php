@@ -7,6 +7,7 @@ $pw = $_GET['password'];
 $email = $_GET['email'];
 $userCode = $_GET['user_code'];
 $key = $_GET['key'];
+$value = $_GET['value'];
 
 switch ($type) {
 case 'get':
@@ -14,6 +15,9 @@ case 'get':
     break;
 case 'login':
     User::login($id, $pw);
+    break;
+case 'set':
+    User::setData($userCode, $key, $value);
     break;
 case 'sign_up':
     User::signUp($id, $pw, $email);

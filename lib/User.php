@@ -28,10 +28,17 @@ class User {
         }
     }
     public static function setData($code, $key, $value) {
-        $id = UserUtils::findIdByCode($code);
-        if ($id !== null) {
-            $userData = new UserData($id);
-            $userData->set($key, $value);
+        if ($key !== 'available' && $key !== 'since' && $key !== 'id' && $key !== 'user_code' && $key !== 'ip') {
+            $id = UserUtils::findIdByCode($code);
+            if ($id !== null) {
+                $userData = new UserData($id);
+                $userData->set($key, $value);
+                echo 'Modify successful!';
+            } else {
+                echo 'Error: Can not find the user.';
+            }
+        } else {
+            echo 'Error: This value can not be modified.';
         }
     }
     public static function signUp($id, $pw, $email) {
