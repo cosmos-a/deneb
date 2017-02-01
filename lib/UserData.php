@@ -9,7 +9,6 @@ class UserData extends Data {
         $dataFile = new DataFile('users.json');
         $this->data = &$dataFile->getData($id);
         $this->dataFile = $dataFile;
-        echo "obj: ".json_encode($this->data);
     }
     
     public function getEmail() {
