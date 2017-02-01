@@ -56,39 +56,39 @@ class User {
             echo 'Success! You can use this ID after the permission of the admin.';
         }
     }
-    /*public static function sortByData($key) {
-        $dataFile = new DataFile('user.json');
-        $users = $dataFile->getAllKeys();
+    public static function sortByData($key) {
+        $dataFile = new DataFile('users.json');
+        $users = $dataFile->data;
         $arr = array();
         foreach ($users as $k => $v) {
-            if ($v->isAvailable()) {
-                if (empty($v->get($key))) {
-                    $v->set('key', '0');
+            if ($v['available'] === 'true') {
+                if (empty($v[$key])) {
+                    $v[$key] = '0';
                 }
                 array_push($arr, $v);
             }
         }
         $pattern = '/^[+-]?\d+(\.\d+)?$/';
         usort($arr, function ($a, $b) use ($key, $pattern) {
-            $valueA = $a->get($key);
-            $valueB = $b->get($key);
+            $valueA = $a[$key];
+            $valueB = $b[$key];
             if (preg_match($pattern, $valueA) && preg_match($pattern, $valueB)) {
                 $tmp = (int) $valueB - (int) $valueA;
                 if ($tmp === 0) {
-                    return strnatcmp($a->get('id'), $b->get('id'));
+                    return strnatcmp($a['id'], $b['id']);
                 } else {
                     return $tmp;
                 }
             } else {
                 $tmp = strnatcmp($valueA, $valueB);
                 if ($tmp === 0) {
-                    return strnatcmp($a->get('id'), $b->get('id'));
+                    return strnatcmp($a['id'], $b['id']);
                 } else {
                     return $tmp;
                 }
             }
-        }
+        });
         return $arr;
-    }*/
+    }
 }
 ?>

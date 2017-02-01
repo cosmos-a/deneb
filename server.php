@@ -22,5 +22,15 @@ case 'set':
 case 'sign_up':
     User::signUp($id, $pw, $email);
     break;
+case 'sort':
+    if ($key !== '' && $key !== 'available' && $key !== 'id' && $key !== 'password' && $key !== 'user_code' && $key !== 'ip') {
+        $users = User::sortByData($key);
+        $arr = array();
+        foreach ($users as $id => $user) {
+            array_push($arr, $user['name'] . '(' . $user['id'] . '):' . $user[$key]);
+        }
+        echo implode('###', $arr);
+    }
+    break;
 }
 ?>
