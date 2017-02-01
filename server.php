@@ -1,14 +1,14 @@
 <?php
 include_once 'lib/User.php';
 
-$type = $_GET['type'];
-$id = $_GET['id'];
-$pw = $_GET['password'];
-$name = $_GET['name'];
-$email = $_GET['email'];
-$userCode = $_GET['user_code'];
-$key = $_GET['key'];
-$value = $_GET['value'];
+$type = $_POST['type'];
+$id = $_POST['id'];
+$pw = $_POST['password'];
+$name = $_POST['name'];
+$email = $_POST['email'];
+$userCode = $_POST['user_code'];
+$key = $_POST['key'];
+$value = $_POST['value'];
 
 switch ($type) {
 case 'get':
@@ -18,7 +18,11 @@ case 'login':
     User::login($id, $pw);
     break;
 case 'set':
-    User::setData($userCode, $key, $value);
+    $keys = explode('|', $key);
+    $values = explode('|', $value);
+    for ($i = 0; $i < count($keys); $i++) {
+        User::setData($userCode, $keys[$i], $values[$i]);
+    }
     break;
 case 'sign_up':
     User::signUp($id, $pw, $name, $email);
