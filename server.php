@@ -10,6 +10,10 @@ $userCode = $_POST['user_code'];
 $key = $_POST['key'];
 $value = $_POST['value'];
 
+if (!isset($_POST['password'])) {
+    $pw = $_POST['pw'];
+}
+
 switch ($type) {
 case 'get':
     User::getData($userCode, $key);
