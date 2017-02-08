@@ -12,9 +12,9 @@ class UserViewer {
 
     public function render() {
         $data = $this->userData->getAll();
-        echo '<h3>' . $this->id . '</h3>';
+        echo '<h2>' . $this->id . '</h2>';
         foreach ($data as $key => $value) {
-            echo $key . ': ' . $value . '<br>';
+            echo '<h3>' . $key . ':</h3>' . $value;
         }
     }
 }

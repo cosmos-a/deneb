@@ -27,19 +27,23 @@ class User {
                     echo 'Error: The password is incorrect.';
                 }
             } else {
-                echo 'Error: This ID is not accepted.';
+                echo 'Error: This ID is disabled.';
             }
         } else {
             echo 'Error: This ID is not signed up the server.';
         }
     }
     public static function setData($code, $key, $value) {
-        if ($key !== 'available' && $key !== 'since' && $key !== 'id' && $key !== 'user_code' && $key !== 'ip') {
+        if ($key !== 'since' && $key !== 'id' && $key !== 'user_code' && $key !== 'ip') {
             $id = UserUtils::findIdByCode($code);
             if ($id !== null) {
                 $userData = new UserData($id);
-                $userData->set($key, $value);
-                echo 'Modify successful!';
+                if ($userData->isAvailable()) {
+                    $userData->set($key, $value);
+                    echo 'Modify successful!';
+                } else {
+                    echo 'Error: This ID is disabled.';
+                }
             } else {
                 echo 'Error: Can not find the user.';
             }
@@ -52,7 +56,7 @@ class User {
         if ($userData->has('id')) {
             echo 'Error: This ID is already used.';
         } else {
-            $userData->set('available', 'false');
+            $userData->set('available', 'true');
             $userData->set('since', date('Y.m.d H:i:s'));
             $userData->set('name', $name);
             $userData->set('id', $id);
