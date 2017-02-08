@@ -10,6 +10,12 @@ class User {
             echo $userData->get($key);
         }
     }
+    public static function isAdmin($admin) {
+        if (file_exists('admin.json')) {
+            return in_array($admin, json_decode(file_get_contents('admin.json'), true));
+        }
+        return false;
+    }
     public static function login($id, $pw) {
         $userData = new UserData($id);
         if (UserUtils::has($id)) {
