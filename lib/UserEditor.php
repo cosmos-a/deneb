@@ -10,10 +10,11 @@ class UserEditor {
         $this->userData = new UserData($id);
     }
 
-    public function render() {
+    public function render($name, $url) {
         $data = $this->userData->getAll();
         $userCode = $data['user_code'];
         echo '<h2>' . $this->id . '</h2>';
+        echo ' <a href=' . str_replace('{id}', $this->id, $url) . '>' . $name . '</a>';
         foreach ($data as $key => $value) {
             if ($key !== 'since' && $key !== 'id' && $key !== 'user_code' && $key !== 'ip') {
                 echo '<form method=post action=server.php>';

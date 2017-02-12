@@ -12,7 +12,7 @@ switch ($type) {
 case 'edit':
     if (User::isAdmin($admin) && !empty($id)) {
         $viewer = new UserEditor($id);
-        $viewer->render();
+        $viewer->render('Back', 'user_manager.php?type=list&admin=' . $admin);
     } else {
         echo 'Error: Forbidden';
     }
@@ -20,7 +20,7 @@ case 'edit':
 case 'list':
     if (User::isAdmin($admin)) {
         $list = new UserList();
-        $list->render();
+        $list->render('Viewer', 'user_manager.php?type=view&admin=' . $admin . '&id={id}');
     } else {
         echo 'Error: Forbidden';
     }
@@ -28,7 +28,7 @@ case 'list':
 case 'view':
     if (User::isAdmin($admin) && !empty($id)) {
         $viewer = new UserViewer($id);
-        $viewer->render();
+        $viewer->render('Editor', 'user_manager.php?type=edit&admin=' . $admin . '&id={id}');
     } else {
         echo 'Error: Forbidden';
     }
