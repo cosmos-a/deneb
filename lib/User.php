@@ -87,14 +87,14 @@ class User {
             if (preg_match($pattern, $valueA) && preg_match($pattern, $valueB)) {
                 $tmp = (int) $valueB - (int) $valueA;
                 if ($tmp === 0) {
-                    return strnatcmp($a['id'], $b['id']);
+                    return strnatcmp($a['since'], $b['since']);
                 } else {
                     return $tmp;
                 }
             } else {
                 $tmp = strnatcmp($valueA, $valueB);
                 if ($tmp === 0) {
-                    return strnatcmp($a['id'], $b['id']);
+                    return strnatcmp($a['since'], $b['since']);
                 } else {
                     return $tmp;
                 }
