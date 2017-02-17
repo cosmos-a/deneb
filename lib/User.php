@@ -10,6 +10,14 @@ class User {
             echo $userData->get($key);
         }
     }
+    public static function getFriendData($myCode, $friendId, $key) {
+        if (UserUtils::isRightFriend($myCode, $friendId)) {
+            $userData = new UserData($id);
+            echo $userData->get($key);
+        } else {
+            echo 'Error: ' . $friendId . ' is not your right friend.';
+        }
+    }
     public static function isAdmin($admin) {
         if (file_exists('admin.json')) {
             return in_array($admin, json_decode(file_get_contents('admin.json'), true));

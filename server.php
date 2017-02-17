@@ -19,6 +19,9 @@ switch ($type) {
 case 'get':
     User::getData($userCode, $key);
     break;
+case 'get_friend_data':
+    User::getFriendData($userCode, $friendId, $key);
+    break;
 case 'is_right_friend':
     User::isRightFriend($userCode, $friendId);
     break;
