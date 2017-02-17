@@ -16,5 +16,15 @@ class UserUtils {
         $dataFile = new DataFile('users.json');
         return $dataFile->has($key);
     }
+    public static function isUsedByOthers($key, $value) {
+        $dataFile = new DataFile('users.json');
+        $users = $dataFile->data;
+        foreach ($users as $id => $user) {
+            if ($user[$key] === $value) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 ?>

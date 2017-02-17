@@ -9,6 +9,7 @@ $email = $_POST['email'];
 $userCode = $_POST['user_code'];
 $key = $_POST['key'];
 $value = $_POST['value'];
+$friendId = $_POST['friend_id'];
 
 if (!isset($_POST['password'])) {
     $pw = $_POST['pw'];
@@ -17,6 +18,9 @@ if (!isset($_POST['password'])) {
 switch ($type) {
 case 'get':
     User::getData($userCode, $key);
+    break;
+case 'is_right_friend':
+    User::isRightFriend($userCode, $friendId);
     break;
 case 'login':
     User::login($id, $pw);

@@ -16,6 +16,24 @@ class User {
         }
         return false;
     }
+    public static function isRightFriend($myCode, $friendId) {
+        $myId = UserUtils::findIdByCode($myCode);
+        if ($myId !== null) {
+            $userDataA = new UserData($myId);
+            $userDataB = new UserData($friendId);
+            if ($userDataA->isAvailable() && $userDataB->isAvailable()) {
+                if (in_array($userDataA->get('id'), json_decode($userDataA->get('friends'), true)) && in_array($userDataB->get('id'), json_decode($userDataB->get('friends'), true))) {
+                    echo 'true';
+                } else {
+                    echo 'false';
+                }
+            } else {
+                echo 'Error: This ID is disabled.';
+            }
+        } else {
+            echo 'Error: Can not find the user.';
+        }
+    }
     public static function login($id, $pw) {
         $userData = new UserData($id);
         if (UserUtils::has($id)) {
@@ -53,8 +71,13 @@ class User {
     }
     public static function signUp($id, $pw, $name, $email) {
         $userData = new UserData($id);
+        $ip = $_SERVER['REMOTE_ADDR'];
         if ($userData->has('id')) {
             echo 'Error: This ID is already used.';
+        } else if (UserUtils::isUsedByOthers('email', $email)) {
+            echo 'Error: This email is already used.';
+        } else if (UserUtils::isUsedByOthers('ip', $ip)) {
+            echo 'Error: Only one ID can be created per person.';
         } else {
             $userData->set('available', 'true');
             $userData->set('since', date('Y.m.d H:i:s'));
@@ -63,7 +86,7 @@ class User {
             $userData->set('password', $pw);
             $userData->set('email', $email);
             $userData->set('user_code', md5($id . mt_rand(0, 99) . $id));
-            $userData->set('ip', $_SERVER['REMOTE_ADDR']);
+            $userData->set('ip', $ip);
             $userData->set('friends', '[]');
             echo 'Success! You can use this ID after the permission of the admin.';
         }
