@@ -16,14 +16,14 @@ if (!isset($_POST['password'])) {
 }
 
 switch ($type) {
-case 'get':
-    User::getData($userCode, $key);
+case 'friend_check':
+    User::isRightFriend($userCode, $friendId);
     break;
-case 'get_friend_data':
+case 'friend_get':
     User::getFriendData($userCode, $friendId, $key);
     break;
-case 'is_right_friend':
-    User::isRightFriend($userCode, $friendId);
+case 'get':
+    User::getData($userCode, $key);
     break;
 case 'login':
     User::login($id, $pw);

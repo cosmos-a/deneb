@@ -12,8 +12,12 @@ class User {
     }
     public static function getFriendData($myCode, $friendId, $key) {
         if (UserUtils::isRightFriend($myCode, $friendId)) {
-            $userData = new UserData($id);
-            echo $userData->get($key);
+            if ($key !== 'password' && $key !== 'user_code') {
+                $userData = new UserData($id);
+                echo $userData->get($key);
+            } else {
+                echo 'Error: This value can\'t be accessed.';
+            }
         } else {
             echo 'Error: ' . $friendId . ' is not your right friend.';
         }
@@ -39,7 +43,7 @@ class User {
                 echo 'Error: This ID is disabled.';
             }
         } else {
-            echo 'Error: Can not find the user.';
+            echo 'Error: Can\'t find the user.';
         }
     }
     public static function login($id, $pw) {
@@ -71,10 +75,10 @@ class User {
                     echo 'Error: This ID is disabled.';
                 }
             } else {
-                echo 'Error: Can not find the user.';
+                echo 'Error: Can\'t find the user.';
             }
         } else {
-            echo 'Error: This value can not be modified.';
+            echo 'Error: This value can\'t be modified.';
         }
     }
     public static function signUp($id, $pw, $name, $email) {
