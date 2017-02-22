@@ -13,7 +13,7 @@ class User {
     public static function getFriendData($myCode, $friendId, $key) {
         if (UserUtils::isRightFriend($myCode, $friendId)) {
             if ($key !== 'password' && $key !== 'user_code') {
-                $userData = new UserData($id);
+                $userData = new UserData($friendId);
                 echo $userData->get($key);
             } else {
                 echo 'Error: This value can\'t be accessed.';
@@ -63,6 +63,26 @@ class User {
             echo 'Error: This ID is not signed up the server.';
         }
     }
+    public static function sendMessage($myCode, $friendId, $message) {
+        $myData = new UserData(UserUtils::findIdByCode($myCode));
+        $userData = new UserData($friendId);
+        if ($myData !== null && $userData !== null) {
+            if ($myData->isAvailable() && $userData->isAvailable()) {
+                $messages = json_decode($userData->get('messages'), true);
+                array_push($messages, json_encode(array(
+                    'from_name' => $myData->getName(),
+                    'from_ip' => $myData->getIp(),
+                    'since' => date('Y.m.d H:i:s'),
+                    'message' => $message)));
+                $userData->set('messages', json_encode($messages));
+                echo 'Send successful!';
+            } else {
+                echo 'Error: This ID is disabled.';
+            }
+        } else {
+            echo 'Error: This ID is not signed up the server.';
+        }
+    }
     public static function setData($code, $key, $value) {
         if ($key !== 'since' && $key !== 'id' && $key !== 'user_code' && $key !== 'ip') {
             $id = UserUtils::findIdByCode($code);
@@ -100,6 +120,7 @@ class User {
             $userData->set('user_code', md5($id . mt_rand(0, 99) . $id));
             $userData->set('ip', $ip);
             $userData->set('friends', '[]');
+            $userData->set('messages', '[]');
             echo 'Success! You can use this ID after the permission of the admin.';
         }
     }

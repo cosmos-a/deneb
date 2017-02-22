@@ -28,6 +28,9 @@ case 'get':
 case 'login':
     User::login($id, $pw);
     break;
+case 'send_message':
+    User::sendMessage($userCode, $friendId, $value);
+    break;
 case 'set':
     $keys = explode('|', $key);
     $values = explode('|', $value);

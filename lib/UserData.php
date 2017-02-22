@@ -20,6 +20,9 @@ class UserData extends Data {
     public function getIp() {
         return parent::get('ip');
     }
+    public function getName() {
+        return parent::get('name');
+    }
     public function getPassword() {
         return parent::get('password');
     }
