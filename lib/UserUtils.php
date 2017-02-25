@@ -22,7 +22,7 @@ class UserUtils {
             $userDataA = new UserData($myId);
             $userDataB = new UserData($friendId);
             if ($userDataA->isAvailable() && $userDataB->isAvailable()) {
-                return (in_array($userDataA->get('id'), json_decode($userDataA->get('friends'), true)) && in_array($userDataB->get('id'), json_decode($userDataB->get('friends'), true)));
+                return (in_array($userDataB->get('id'), json_decode($userDataA->get('friends'), true)) && in_array($userDataA->get('id'), json_decode($userDataB->get('friends'), true)));
             }
         }
         return false;
