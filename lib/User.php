@@ -1,6 +1,7 @@
 <?php
 include_once 'UserData.php';
 include_once 'UserUtils.php';
+include_once 'Key.php';
 
 class User {
     public static function getData($code, $key) {
@@ -12,7 +13,7 @@ class User {
     }
     public static function getFriendData($myCode, $friendId, $key) {
         if (UserUtils::isRightFriend($myCode, $friendId)) {
-            if ($key !== 'password' && $key !== 'user_code') {
+            if (Key::isProtected($key)) {
                 $userData = new UserData($friendId);
                 echo $userData->get($key);
             } else {
@@ -84,7 +85,7 @@ class User {
         }
     }
     public static function setData($code, $key, $value) {
-        if ($key !== 'since' && $key !== 'id' && $key !== 'user_code' && $key !== 'ip') {
+        if (Key::isWritable($key)) {
             $id = UserUtils::findIdByCode($code);
             if ($id !== null) {
                 $userData = new UserData($id);

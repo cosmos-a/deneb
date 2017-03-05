@@ -1,5 +1,6 @@
 <?php
 include_once 'UserData.php';
+include_once 'Key.php';
 
 class UserEditor {
     private $id;
@@ -16,7 +17,7 @@ class UserEditor {
         echo '<h2>' . $this->id . '</h2>';
         echo ' <a href=' . str_replace('{id}', $this->id, $url) . '>' . $name . '</a>';
         foreach ($data as $key => $value) {
-            if ($key !== 'since' && $key !== 'id' && $key !== 'user_code' && $key !== 'ip') {
+            if (Key::isWritable($key)) {
                 echo '<form method=post action=server.php>';
                 echo '<input name=type value=set style=display:none>';
                 echo '<input name=user_code value=' . $userCode . ' style=display:none>';

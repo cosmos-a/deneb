@@ -1,5 +1,6 @@
 <?php
 include_once 'lib/User.php';
+include_once 'lib/Key.php';
 
 $type = $_POST['type'];
 $id = $_POST['id'];
@@ -42,7 +43,7 @@ case 'sign_up':
     User::signUp($id, $pw, $name, $email);
     break;
 case 'sort':
-    if ($key !== '' && $key !== 'available' && $key !== 'name' && $key !== 'id' && $key !== 'password' && $key !== 'user_code' && $key !== 'ip') {
+    if (Key::isPublic($key)) {
         $users = User::sortByData($key);
         $arr = array();
         foreach ($users as $id => $user) {
