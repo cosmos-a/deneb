@@ -28,7 +28,7 @@ class Key {
     }
 
     private static function getData() {
-    	$data = null;
+        $data = null;
         if (file_exists('keys.json')) {
             $data = json_decode(file_get_contents('keys.json'), true);
         } else {
@@ -47,18 +47,18 @@ class Key {
             fwrite(fopen('keys.json', 'w'), json_encode($data));
         }
         return array(
-        	'public' => array_filter($data, function ($var) {
-		        	return in_array('public', explode('|', $var));
-		        }),
-        	'protected' => array_filter($data, function ($var) {
-		        	return in_array('protected', explode('|', $var));
-		        }),
-        	'private' => array_filter($data, function ($var) {
-		        	return in_array('private', explode('|', $var));
-		        }),
-        	'writable' => array_filter($data, function ($var) {
-		        	return in_array('writable', explode('|', $var));
-		        })
+            'public' => array_filter($data, function ($var) {
+                    return in_array('public', explode('|', $var));
+                }),
+            'protected' => array_filter($data, function ($var) {
+                    return in_array('protected', explode('|', $var));
+                }),
+            'private' => array_filter($data, function ($var) {
+                    return in_array('private', explode('|', $var));
+                }),
+            'writable' => array_filter($data, function ($var) {
+                    return in_array('writable', explode('|', $var));
+                })
         );
     }
 }
