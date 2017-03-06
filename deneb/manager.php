@@ -10,10 +10,10 @@
 <body>
 
 <?php
-include_once 'lib/User.php';
-include_once 'lib/UserEditor.php';
-include_once 'lib/UserList.php';
-include_once 'lib/UserViewer.php';
+include_once '../lib/User.php';
+include_once '../lib/UserEditor.php';
+include_once '../lib/UserList.php';
+include_once '../lib/UserViewer.php';
 
 $admin = $_GET['admin'];
 $type = $_GET['type'];
@@ -21,7 +21,7 @@ $id = $_GET['id'];
 
 function main() {
     echo '<h1>User Manager</h1>';
-    echo '<form method=get action=user_manager.php>';
+    echo '<form method=get action=manager.php>';
     echo '<input name=type value=list style=display:none>';
     echo 'Admin: <input type=text name=admin>';
     echo '&nbsp;<input type="submit" value="Login">';
@@ -32,7 +32,7 @@ switch ($type) {
 case 'edit':
     if (User::isAdmin($admin) && !empty($id)) {
         $viewer = new UserEditor($id);
-        $viewer->render('Back', 'user_manager.php?type=list&admin=' . $admin);
+        $viewer->render('Back', 'manager.php?type=list&admin=' . $admin);
     } else {
         main();
     }
@@ -40,7 +40,7 @@ case 'edit':
 case 'list':
     if (User::isAdmin($admin)) {
         $list = new UserList();
-        $list->render('Viewer', 'user_manager.php?type=view&admin=' . $admin . '&id={id}');
+        $list->render('Viewer', 'manager.php?type=view&admin=' . $admin . '&id={id}');
     } else {
         main();
     }
@@ -48,7 +48,7 @@ case 'list':
 case 'view':
     if (User::isAdmin($admin) && !empty($id)) {
         $viewer = new UserViewer($id);
-        $viewer->render('Editor', 'user_manager.php?type=edit&admin=' . $admin . '&id={id}');
+        $viewer->render('Editor', 'manager.php?type=edit&admin=' . $admin . '&id={id}');
     } else {
         main();
     }

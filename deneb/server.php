@@ -1,6 +1,6 @@
 <?php
-include_once 'lib/User.php';
-include_once 'lib/Key.php';
+include_once '../lib/User.php';
+include_once '../lib/Key.php';
 
 $type = $_POST['type'];
 $id = $_POST['id'];
