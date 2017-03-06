@@ -169,6 +169,7 @@
                         <span class="mdl-list__item-primary-content">
                             <i class="material-icons mdl-list__item-avatar">person</i>
                             <?php
+                                include_once '../lib/User.php';
                                 include_once '../lib/UserData.php';
                                 include_once '../lib/UserUtils.php';
 
@@ -212,6 +213,9 @@
                     <div style="text-align: right;">
                     <?php
                         if ($isLogin) {
+                            if (User::isAdmin($_SESSION['user_code'])) {
+                                echo '<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" href="manager.php">Manager</a>';
+                            }
                             echo '<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" href="logout.php">Logout</a><br>';
                         } else {
                             echo '<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" href="login.php">Login</a>';

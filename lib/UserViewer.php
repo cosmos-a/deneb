@@ -12,10 +12,10 @@ class UserViewer {
 
     public function render($name, $url) {
         $data = $this->userData->getAll();
-        echo '<h2>' . $this->id . '</h2>';
+        echo '<h4>' . $this->id . '</h4>';
         echo '<a href=' . str_replace('{id}', $this->id, $url) . '>' . $name . '</a>';
         foreach ($data as $key => $value) {
-            echo '<h3>' . $key . ':</h3>' . $value;
+            echo '<h5>' . $key . ':</h5>' . $value;
         }
     }
 }

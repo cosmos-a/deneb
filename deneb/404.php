@@ -45,7 +45,7 @@
                     <span class=mdl-color-text--primary>페이지를 표시할 수 없습니다.</span><br><br>
                     요청하신 파일을 찾을 수 없거나, 서버에서 제거 되었습니다. URL을 확인해 주시기 바랍니다.
                 </div>
-                <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop" id="content" style="padding: 0 24px 24px 24px">
+                <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop" id="content" style="padding: 0 24px 0 24px">
                     <ul class="mdl-list">
                         <?php
                             foreach ($navs as $key => $value) {

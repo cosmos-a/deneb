@@ -45,7 +45,7 @@
                     <span class=mdl-color-text--primary>엑세스가 금지되었습니다.</span><br><br>
                     요청하신 페이지는 엑세스가 금지되었습니다. 요청하신 디렉토리 내에 인덱스 페이지가 없으신 경우 업로드 하신 후 접속해 보시기 바랍니다.
                 </div>
-                <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop" id="content" style="padding: 0 24px 24px 24px">
+                <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop" id="content" style="padding: 0 24px 0 24px">
                     <ul class="mdl-list">
                         <?php
                             foreach ($navs as $key => $value) {

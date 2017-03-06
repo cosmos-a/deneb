@@ -23,9 +23,9 @@ class User {
             echo 'Error: ' . $friendId . ' is not your right friend.';
         }
     }
-    public static function isAdmin($admin) {
-        if (file_exists('admin.json')) {
-            return in_array($admin, json_decode(file_get_contents('admin.json'), true));
+    public static function isAdmin($code) {
+        if (file_exists('admins.json')) {
+            return in_array($code, json_decode(file_get_contents('admins.json'), true));
         }
         return false;
     }

@@ -40,12 +40,12 @@
         <main class="mdl-layout__content">
             <div id="top"></div>
             <div class="mdl-grid">
-                <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop" id="content" style="padding: 0 24px 24px 24px">
+                <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop" id="content" style="padding: 0 24px 0px 24px">
                     <h4>License</h4>
                     <ul class="mdl-list">
                         <li class="mdl-list__item mdl-list__item--two-line">
                             <span class="mdl-list__item-primary-content">
-                                <a href="https://github.com/google/material-design-icons">Deneb</a>
+                                <a href="https://github.com/Astro36/Deneb">Deneb</a>
                                 <span class="mdl-list__item-sub-title">© <a href="https://github.com/Astro36">Astro</a>, <a href="https://github.com/Astro36/Deneb/blob/master/LICENSE">GPL-3.0</a></span>
                             </span>
                         </li>

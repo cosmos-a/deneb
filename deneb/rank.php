@@ -48,7 +48,7 @@
                         <?php
                             include_once '../lib/Key.php';
 
-                            $keys = json_decode(Key::getPublicKeys(), true);
+                            $keys = json_decode(Key::getSortableKeys(), true);
                             $key = $_GET['key'];
 
                             foreach ($keys as $i => $value) {
@@ -66,7 +66,7 @@
                         <?php
                             include_once '../lib/User.php';
 
-                            if (Key::isPublic($key)) {
+                            if (Key::isSortable($key)) {
                                 $users = User::sortByData($key);
                                 $i = 0;
                                 foreach ($users as $id => $user) {

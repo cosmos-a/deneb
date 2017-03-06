@@ -9,6 +9,9 @@ class Key {
     public static function isPrivate($key) {
         return Key::isPublic($key) || Key::isProtected($key) || array_key_exists($key, Key::getData()['private']);
     }
+    public static function isSortable($key) {
+        return array_key_exists($key, Key::getData()['sortable']);
+    }
     public static function isWritable($key) {
         return array_key_exists($key, Key::getData()['writable']);
     }
@@ -23,6 +26,9 @@ class Key {
         $data = Key::getData();
         return json_encode(array_merge($data['public'], $data['protected'], $data['private']));
     }
+    public static function getSortableKeys() {
+        return json_encode(Key::getData()['sortable']);
+    }
     public static function getWritableKeys() {
         return json_encode(Key::getData()['writable']);
     }
@@ -34,7 +40,7 @@ class Key {
         } else {
             $data = array(
                 'available' => 'private|writable',
-                'since' => 'public',
+                'since' => 'public|sortable',
                 'name' => 'public|writable',
                 'id' => 'public',
                 'password' => 'private|writable',
@@ -55,6 +61,9 @@ class Key {
                 }),
             'private' => array_filter($data, function ($var) {
                     return in_array('private', explode('|', $var));
+                }),
+            'sortable' => array_filter($data, function ($var) {
+                    return in_array('sortable', explode('|', $var));
                 }),
             'writable' => array_filter($data, function ($var) {
                     return in_array('writable', explode('|', $var));

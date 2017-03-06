@@ -1,6 +1,6 @@
 {
     "available": "private|writable",
-    "since": "public",
+    "since": "public|sortable",
     "name": "public|writable",
     "id": "public",
     "password": "private|writable",
