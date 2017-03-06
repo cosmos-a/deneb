@@ -45,14 +45,20 @@
                     <ul class="mdl-list">
                         <li class="mdl-list__item mdl-list__item--two-line">
                             <span class="mdl-list__item-primary-content">
+                                <a href="https://github.com/google/material-design-icons">Deneb</a>
+                                <span class="mdl-list__item-sub-title">© <a href="https://github.com/Astro36">Astro</a>, <a href="https://github.com/Astro36/Deneb/blob/master/LICENSE">GPL-3.0</a></span>
+                            </span>
+                        </li>
+                        <li class="mdl-list__item mdl-list__item--two-line">
+                            <span class="mdl-list__item-primary-content">
                                 <a href="https://github.com/google/material-design-lite">Material Design Lite</a>
-                                <span class="mdl-list__item-sub-title">© Google, <a href="https://github.com/google/material-design-lite/blob/master/LICENSE">Apache-2.0</a></span>
+                                <span class="mdl-list__item-sub-title">© <a href="https://github.com/google">Google</a>, <a href="https://github.com/google/material-design-lite/blob/master/LICENSE">Apache-2.0</a></span>
                             </span>
                         </li>
                         <li class="mdl-list__item mdl-list__item--two-line">
                             <span class="mdl-list__item-primary-content">
                                 <a href="https://github.com/google/material-design-icons">Material Design Icons</a>
-                                <span class="mdl-list__item-sub-title">© Google, <a href="https://github.com/google/material-design-icons/blob/master/LICENSE">Apache-2.0</a></span>
+                                <span class="mdl-list__item-sub-title">© <a href="https://github.com/google">Google</a>, <a href="https://github.com/google/material-design-icons/blob/master/LICENSE">Apache-2.0</a></span>
                             </span>
                         </li>
                     </ul>
