@@ -26,6 +26,8 @@ class User {
     public static function isAdmin($code) {
         if (file_exists('admins.json')) {
             return in_array($code, json_decode(file_get_contents('admins.json'), true));
+        } else {
+            fwrite(fopen('admins.json', 'w'), json_encode(array()));
         }
         return false;
     }
