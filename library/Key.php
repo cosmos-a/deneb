@@ -39,36 +39,63 @@ class Key {
             $data = json_decode(file_get_contents('keys.json'), true);
         } else {
             $data = array(
-                'available' => 'private|writable',
-                'since' => 'public|sortable',
-                'name' => 'public|writable',
-                'id' => 'public',
-                'password' => 'private|writable',
-                'email' => 'public|writable',
-                'user_code' => 'private',
-                'ip' => 'protected',
-                'friends' => 'protected|writable',
-                'messages' => 'private|writable'
+                'global' => array(
+                    'available' => 'private|writable',
+                    'since' => 'public|sortable',
+                    'name' => 'public|writable',
+                    'id' => 'public',
+                    'password' => 'private|writable',
+                    'email' => 'public|writable',
+                    'user_code' => 'private',
+                    'ip' => 'protected',
+                    'friends' => 'protected|writable',
+                    'messages' => 'private|writable'
+                )
             );
             fwrite(fopen('keys.json', 'w'), json_encode($data));
         }
-        return array(
-            'public' => array_filter($data, function ($var) {
-                    return in_array('public', explode('|', $var));
-                }),
-            'protected' => array_filter($data, function ($var) {
-                    return in_array('protected', explode('|', $var));
-                }),
-            'private' => array_filter($data, function ($var) {
-                    return in_array('private', explode('|', $var));
-                }),
-            'sortable' => array_filter($data, function ($var) {
-                    return in_array('sortable', explode('|', $var));
-                }),
-            'writable' => array_filter($data, function ($var) {
-                    return in_array('writable', explode('|', $var));
-                })
-        );
+        $arr = array();
+        foreach ($data as $key0 => $value0) {
+            foreach ($value0 as $key1 => $value1) {
+                $properties = explode('|', $value1);
+                if (in_array('public', $properties)) {
+                    if ($key0 === 'global') {
+                        $arr['public'][$key1] = $value1;
+                    } else {
+                        $arr['public'][$key0 . '___' . $key1] = $value1;
+                    }
+                } else if (in_array('protected', $properties)) {
+                    if ($key0 === 'global') {
+                        $arr['protected'][$key1] = $value1;
+                    } else {
+                        $arr['protected'][$key0 . '___' . $key1] = $value1;
+                    }
+                } else if (in_array('private', $properties)) {
+                    if ($key0 === 'global') {
+                        $arr['private'][$key1] = $value1;
+                    } else {
+                        $arr['private'][$key0 . '___' . $key1] = $value1;
+                    }
+                }
+
+                if (in_array('sortable', $properties)) {
+                    if ($key0 === 'global') {
+                        $arr['sortable'][$key1] = $value1;
+                    } else {
+                        $arr['sortable'][$key0 . '___' . $key1] = $value1;
+                    }
+                }
+
+                if (in_array('writable', $properties)) {
+                    if ($key0 === 'global') {
+                        $arr['writable'][$key1] = $value1;
+                    } else {
+                        $arr['writable'][$key0 . '___' . $key1] = $value1;
+                    }
+                }
+            }
+        }
+        return $arr;
     }
 }
 ?>

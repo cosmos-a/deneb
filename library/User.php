@@ -87,21 +87,21 @@ class User {
         }
     }
     public static function setData($code, $key, $value) {
-        if (Key::isWritable($key)) {
-            $id = UserUtils::findIdByCode($code);
-            if ($id !== null) {
-                $userData = new UserData($id);
-                if ($userData->isAvailable()) {
+        $id = UserUtils::findIdByCode($code);
+        if ($id !== null) {
+            $userData = new UserData($id);
+            if ($userData->isAvailable()) {
+                if (Key::isWritable($key) || empty($userData->get($key))) {
                     $userData->set($key, $value);
                     echo 'Modify successful!';
                 } else {
-                    echo 'Error: This ID is disabled.';
+                    echo 'Error: This value can\'t be modified.';
                 }
             } else {
-                echo 'Error: Can\'t find the user.';
+                echo 'Error: This ID is disabled.';
             }
         } else {
-            echo 'Error: This value can\'t be modified.';
+            echo 'Error: Can\'t find the user.';
         }
     }
     public static function signUp($id, $pw, $name, $email) {

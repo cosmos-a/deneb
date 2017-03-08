@@ -1,12 +1,14 @@
 {
-    "available": "private|writable",
-    "since": "public|sortable",
-    "name": "public|writable",
-    "id": "public",
-    "password": "private|writable",
-    "email": "public|writable",
-    "user_code": "private",
-    "ip": "protected",
-    "friends": "protected|writable",
-    "messages": "private|writable"
+    "global": {
+        "available": "private|writable",
+        "since": "public|sortable",
+        "name": "public|writable",
+        "id": "public",
+        "password": "private|writable",
+        "email": "public|writable",
+        "user_code": "private",
+        "ip": "protected",
+        "friends": "protected|writable",
+        "messages": "private|writable"
+    }
 }
