@@ -1,5 +1,6 @@
 {
     "Home": "index.php",
     "Rank": "rank.php",
+    "Log": "log.php",
     "Copyright": "copyright.php"
 }

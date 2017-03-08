@@ -24,6 +24,7 @@
     <?php
         include_once 'library/UserData.php';
         include_once 'library/UserUtils.php';
+        include_once 'library/Log.php';
 
         $id = $_POST['id'];
         $pw = $_POST['pw'];
@@ -45,6 +46,7 @@
             } else {
                 $reason = '로그인 실패: ID를 찾을 수 없습니다.';
             }
+            Log::add('login', '{' . $id . '} tried to login.');
         } else if (isset($_SESSION['user_code'])) {
             if (UserUtils::isUsedByOthers('user_code', $_SESSION['user_code'])) {
                 echo '<script type="text/javascript">location.href="index.php#user";</script>';

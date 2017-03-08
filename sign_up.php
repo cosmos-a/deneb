@@ -24,6 +24,7 @@
     <?php
         include_once 'library/UserData.php';
         include_once 'library/UserUtils.php';
+        include_once 'library/Log.php';
 
         $id = $_POST['id'];
         $pw = $_POST['pw'];
@@ -53,6 +54,7 @@
                 $_SESSION['user_code'] = $userData->getUserCode();
                 echo '<script type="text/javascript">location.href="index.php#user";</script>';
             }
+            Log::add('sign_up', '{' . $id . '} tried to sign up.');
         } else if (isset($_SESSION['user_code'])) {
             if (UserUtils::isUsedByOthers('user_code', $_SESSION['user_code'])) {
                 echo '<script type="text/javascript">location.href="index.php#user";</script>';
