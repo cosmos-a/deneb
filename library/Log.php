@@ -1,11 +1,9 @@
 <?php
 class Log {
     public static function add($type, $desc) {
-        $logs = null;
+        $logs = array();
         if (file_exists('logs.json')) {
             $logs = json_decode(file_get_contents('logs.json'), true);
-        } else {
-            $logs = array();
         }
 
         array_push($logs, array(

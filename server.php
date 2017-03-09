@@ -21,15 +21,15 @@ if (!isset($_POST['password'])) {
 switch ($type) {
 case 'friend_check':
     User::isRightFriend($userCode, $friendId);
-    Log::add($type, '{' . UserUtils::findIdByCode($userCode) . '} checked {' . $friendId . '} is his/her friend.');
+    Log::add($type, '{' . UserUtils::findIdByCode($userCode) . '} checked {' . $friendId . '} is a friend.');
     break;
 case 'friend_get':
     User::getFriendData($userCode, $friendId, $key);
-    Log::add($type, '{' . UserUtils::findIdByCode($userCode) . '} got {' . $friendId . '}\'s ' . $key . ' value.');
+    Log::add($type, '{' . UserUtils::findIdByCode($userCode) . '} got {' . $key . '} value of {' . $friendId . '}.');
     break;
 case 'get':
     User::getData($userCode, $key);
-    Log::add($type, '{' . UserUtils::findIdByCode($userCode) . '} got his/her {' . $key . '} value.');
+    Log::add($type, '{' . UserUtils::findIdByCode($userCode) . '} got {' . $key . '} value.');
     break;
 case 'login':
     User::login($id, $pw);
