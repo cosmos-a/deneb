@@ -25,6 +25,7 @@
         include_once 'library/UserData.php';
         include_once 'library/UserUtils.php';
         include_once 'library/Log.php';
+        include_once 'library/Text.php';
 
         $id = $_POST['id'];
         $pw = $_POST['pw'];
@@ -34,7 +35,15 @@
         if (!empty($id) && !empty($pw) && !empty($name) && !empty($email)) {
             $userData = new UserData($id);
             $ip = $_SERVER['REMOTE_ADDR'];
-            if ($userData->has('id')) {
+            if (!Text::verifyId($id)) {
+                $reason = '가입 실패: 유효하지 않은 ID입니다.';
+            } else if (!Text::verifyPassword($id)) {
+                $reason = '가입 실패: 유효하지 않은 비밀번호입니다.';
+            } else if (!Text::verifyName($id)) {
+                $reason = '가입 실패: 유효하지 않은 이름입니다.';
+            } else if (!Text::verifyEmail($id)) {
+                $reason = '가입 실패: 유효하지 않은 E-mail입니다.';
+            } else if ($userData->has('id')) {
                 $reason = '가입 실패: 이미 사용 중인 ID입니다.';
             } else if (UserUtils::isUsedByOthers('email', $email)) {
                 $reason = '가입 실패: 이미 사용 중인 E-mail입니다.';
