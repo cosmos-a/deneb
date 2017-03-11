@@ -2,6 +2,7 @@
 include_once 'UserData.php';
 include_once 'UserUtils.php';
 include_once 'Key.php';
+include_once 'Text.php';
 
 class User {
     public static function getData($code, $key) {
@@ -107,7 +108,15 @@ class User {
     public static function signUp($id, $pw, $name, $email) {
         $userData = new UserData($id);
         $ip = $_SERVER['REMOTE_ADDR'];
-        if ($userData->has('id')) {
+        if (!Text::verifyId($id)) {
+            echo 'Error: The ID is invalid.';
+        } else if (!Text::verifyPassword($id)) {
+            echo 'Error: The password is invalid.';
+        } else if (!Text::verifyName($id)) {
+            echo 'Error: The name is invalid.';
+        } else if (!Text::verifyEmail($id)) {
+            echo 'Error: The email is invalid.';
+        } else if ($userData->has('id')) {
             echo 'Error: This ID is already used.';
         } else if (UserUtils::isUsedByOthers('email', $email)) {
             echo 'Error: This email is already used.';
