@@ -94,17 +94,11 @@
                     ?>
                 </div>
             </div>
-            <footer class="mdl-mini-footer">
-                <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">Copyright 2016-2017&nbsp;<a class="mdl-color-text--grey-100" href="https://github.com/Astro36">Astro</a>. All rights reserved.</div>
-                </div>
-                <div class="mdl-mini-footer__right-section">
-                    <ul class="mdl-mini-footer__link-list">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="#top">Back to Top</a></li>
-                    </ul>
-                </div>
-            </footer>
+            <?php
+                if (file_exists('footer.html')) {
+                    echo file_get_contents('footer.html');
+                }
+            ?>
         </main>
     </div>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
